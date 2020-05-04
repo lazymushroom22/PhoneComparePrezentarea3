@@ -1,0 +1,57 @@
+﻿@model Phone
+@{
+    string phoneDimensions = Model != null ? $"{Model.Length}mm x {Model.Height}mm x {Model.Width}mm" : string.Empty;
+}
+@if (Model == null)
+{
+    <text>
+        <div class="col-md-12">
+            <div class="row">
+                
+            </div>
+        </div>
+    </text>
+}
+else
+{
+    <text>
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-4" style="background-color:lavender;">Battery</div>
+                <div class="col-md-8" style="background-color:lavenderblush;">@Model.Battery</div>
+            </div>
+            <div class="row">
+                <div class="col-md-4" style="background-color:lavender;">Display resolution</div>
+                <div class="col-md-8" style="background-color:lavenderblush;">@Model.DisplayResolution</div>
+            </div>
+            <div class="row">
+                <div class="col-md-4" style="background-color:lavender;">Operating system</div>
+                <div class="col-md-8" style="background-color:lavenderblush;">@Model.OperatingSystem</div>
+            </div>
+            <div class="row">
+                <div class="col-md-4" style="background-color:lavender;">Dimensions</div>
+                <div class="col-md-8" style="background-color:lavenderblush;"> @phoneDimensions</div>
+            </div>
+            <div class="row">
+                <div class="col-md-4" style="background-color:lavender;">CPU</div>
+                <div class="col-md-8" style="background-color:lavenderblush;">@Model.CPU</div>
+            </div>
+            <div class="row">
+                <div class="col-md-4" style="background-color:lavender;">GPU</div>
+                <div class="col-md-8" style="background-color:lavenderblush;">@Model.GPU</div>
+            </div>
+            <div class="row">
+                <div class="col-md-4" style="background-color:lavender;">Sensors</div>
+                <div class="col-md-8" style="background-color:lavenderblush;">@Model.Sensors</div>
+            </div>
+            <div class="row">
+                <div class="col-md-4" style="background-color:lavender;">Chipset</div>
+                <div class="col-md-8" style="background-color:lavenderblush;">@Model.Chipset</div>
+            </div>
+            <div class="row">
+                <div class="col-md-4" style="background-color:lavender;">LaunchDate</div>
+                <div class="col-md-8" style="background-color:lavenderblush;">@Model.LaunchDate</div>
+            </div>
+        </div>
+    </text>
+}

@@ -1,0 +1,82 @@
+﻿@model List<Phone>
+@{
+    ViewData["Title"] = "ComparePhones";
+}
+
+<h1>Compare phones</h1>
+<div class="col-md-12">
+    <div class="row">
+        <div class="col-md-6" style="background-color:lavender;">
+            @Html.DropDownList("LeftPhone",
+                    Model.Select(item => new SelectListItem
+                         {
+                        Value = item.ID.ToString(),
+                        Text = item.Brand + " " + item.Model,
+                        Selected = "select" == item.ID.ToString()
+                    }),
+                    "Select phone",
+                    new { @class = "form-control" })
+        </div>
+        <div class="col-md-6" style="background-color:lavenderblush;">
+            @Html.DropDownList("RightPhone",
+                    Model.Select(item => new SelectListItem
+                         {
+                        Value = item.ID.ToString(),
+                        Text = item.Brand + " " + item.Model,
+                        Selected = "select" == item.ID.ToString()
+                    }),
+                    "Select phone",
+                    new { @class = "form-control" })
+        </div>
+    </div>
+</div>
+<div class="col-md-12">
+    <div class="row">
+        <div class="col-md-6" style="background-color:lavender;" id="leftPhonePanel">
+
+        </div>
+        <div class="col-md-6" style="background-color:lavenderblush;" id="rightPhonePanel">
+
+        </div>
+    </div>
+</div>
+
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#LeftPhone").change(function () {
+            var id = this.value;
+            $.ajax({
+			    type: "GET",
+			    url: "@Url.Action("GetPhoneDetails")",
+			    dataType: "html",
+			    data: ({id}),
+			    cache: false,
+                success: function (data) {
+				    if (data) {
+                        $("#leftPhonePanel").html(data);
+				    }
+                }, error: function (request, status, error) {
+                    alert(request.responseText);
+                }
+		    });
+        });
+        $("#RightPhone").change(function () {
+            var id = this.value;
+            $.ajax({
+			    type: "GET",
+			    url: "@Url.Action("GetPhoneDetails")",
+			    dataType: "html",
+			    data: ({id}),
+			    cache: false,
+                success: function (data) {
+				    if (data) {
+                        $("#rightPhonePanel").html(data);
+				    }
+                }, error: function (request, status, error) {
+                    alert(request.responseText);
+                }
+		    });
+        });
+    });
+</script>
